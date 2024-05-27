@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3c2a9e5ba0f47fe4c9781e4e61424026, type: 3}
-  m_Name: Stick
+  m_Name: Furnance
   m_EditorClassIdentifier: 
-  itemName: Stick
-  itemID: 0
+  itemName: Furnance
+  itemID: 9
   type: 0
-  actionType: 1
+  actionType: 2
   range: {x: 5, y: 4}
-  stackable: 1
-  image: {fileID: 21300000, guid: 824c1005df9e5944fa6daf47fb06da66, type: 3}
+  stackable: 0
+  image: {fileID: 21300000, guid: 5dc5c3b4ea7312043a240e208e862ab0, type: 3}

@@ -1,12 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Collections.Generic;
 
 public class InventoryManager : MonoBehaviour
 {
     public int maxStackedItems = 4;
 
     public InventorySlot[] inventorySlots;
+
+    private Chest chest;
 
     public GameObject inventoryItemPrefab;
 
@@ -94,72 +97,88 @@ public class InventoryManager : MonoBehaviour
         return false;
     }
     
-    void SpawnNewItem(Item item, InventorySlot slot)
+    public void SpawnNewItem(Item item, InventorySlot slot)
     {
         GameObject newItemGo = Instantiate(inventoryItemPrefab, slot.transform);
         InventoryItem inventoryItem = newItemGo.GetComponent<InventoryItem>();
         inventoryItem.InitialiseItem (item);
     }
 
-    public bool
-    CheckRecipeIngredients(Recipe recipe, out string inventoryContents)
+   public bool CheckRecipeIngredients(Recipe recipe, out string inventoryContents)
+{
+    // Check for null input
+    if (recipe == null || recipe.ingredients == null)
     {
-        Dictionary<string, int> inventoryCounts = new Dictionary<string, int>();
-        inventoryContents = "";
-        bool canCraft = true;
-        foreach (Ingredient ingredient in recipe.ingredients)
+        inventoryContents = "Error: Recipe or ingredients list is null.";
+        return false;  // Cannot proceed without a valid recipe
+    }
+
+    Dictionary<string, int> inventoryCounts = new Dictionary<string, int>();
+    inventoryContents = "";
+    bool canCraft = true;
+
+    // Initialize inventory counts with recipe ingredients
+    foreach (Ingredient ingredient in recipe.ingredients)
+    {
+        if (ingredient != null)  // Check for null ingredients
         {
-            if (!inventoryCounts.ContainsKey(ingredient.name))
+            inventoryCounts[ingredient.name] = 0;
+        }
+    }
+
+    // Add counts from the inventory
+    for (int i = 0; i < inventorySlots.Length; i++)
+    {
+        InventorySlot slot = inventorySlots[i];
+        InventoryItem itemInSlot = slot.GetComponentInChildren<InventoryItem>();
+
+        if (itemInSlot != null && itemInSlot.item != null)
+        {
+            if (inventoryCounts.ContainsKey(itemInSlot.item.itemName))
             {
-                inventoryCounts[ingredient.name] = 0;
+                inventoryCounts[itemInSlot.item.itemName] += itemInSlot.count;
+            }
+
+            inventoryContents += $"Slot {i}: {itemInSlot.item.itemName}, Quantity: {itemInSlot.count}\n";
+        }
+        else
+        {
+            inventoryContents += $"Slot {i}: Empty\n";
+        }
+    }
+
+    // Check the chest if it's open and get items
+    if (chest.Openchest())
+    {
+        List<InventoryItem> itemsFromChest = chest.GetItemsFromChest();
+        foreach (InventoryItem item in itemsFromChest)
+        {
+            if (item != null && item.item != null && inventoryCounts.ContainsKey(item.item.itemName))
+            {
+                inventoryCounts[item.item.itemName] += item.count;
             }
         }
-        for (int i = 0; i < inventorySlots.Length; i++)
-        {
-            InventorySlot slot = inventorySlots[i];
-            InventoryItem itemInSlot =
-                slot.GetComponentInChildren<InventoryItem>();
+    }
 
-            if (itemInSlot != null)
-            {
-                if (inventoryCounts.ContainsKey(itemInSlot.item.itemName))
-                {
-                    inventoryCounts[itemInSlot.item.itemName] +=
-                        itemInSlot.count;
-                }
-
-                if (itemInSlot.item.stackable)
-                {
-                    inventoryContents +=
-                        $"Slot {i}: {itemInSlot.item.itemName}, Ilość: {itemInSlot.count}\n";
-                }
-                else
-                {
-                    inventoryContents +=
-                        $"Slot {i}: {itemInSlot.item.itemName}\n";
-                }
-            }
-            else
-            {
-                inventoryContents += $"Slot {i}: Pusty\n";
-            }
-        }
-
-        inventoryContents +="\nPodsumowanie ilości wymaganych przedmiotów z przepisu:\n";
-        foreach (Ingredient ingredient in recipe.ingredients)
+    // Summary of required items from the recipe
+    inventoryContents += "\nSummary of required items from the recipe:\n";
+    foreach (Ingredient ingredient in recipe.ingredients)
+    {
+        if (ingredient != null)
         {
             int countNeeded = ingredient.quantity;
-            int countAvailable = inventoryCounts[ingredient.name];
-            inventoryContents +=
-                $"{ingredient.name}: Potrzeba {countNeeded}, Dostępne {countAvailable}\n";
+            int countAvailable = inventoryCounts.ContainsKey(ingredient.name) ? inventoryCounts[ingredient.name] : 0;
+            inventoryContents += $"{ingredient.name}: Needed {countNeeded}, Available {countAvailable}\n";
             if (countAvailable < countNeeded)
             {
                 canCraft = false;
             }
         }
-
-        return canCraft;
     }
+
+    return canCraft;
+}
+
 
     public bool TryCraftItem(Recipe recipe)
     {

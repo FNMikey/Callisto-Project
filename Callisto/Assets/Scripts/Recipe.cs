@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-[CreateAssetMenu(menuName = "Scriptable object/Recipes")]
-public class Recipe : ScriptableObject
+public class Recipe : MonoBehaviour
 {
     public List<Ingredient> ingredients;
 

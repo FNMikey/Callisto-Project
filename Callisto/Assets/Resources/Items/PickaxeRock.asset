@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3c2a9e5ba0f47fe4c9781e4e61424026, type: 3}
-  m_Name: Pick
+  m_Name: PickaxeRock
   m_EditorClassIdentifier: 
-  itemName: Pick
-  itemID: 1
+  itemName: PickaxeRock
+  itemID: 5
   type: 1
   actionType: 0
   range: {x: 5, y: 4}
   stackable: 0
-  image: {fileID: 21300000, guid: a1fcb9ef506a36b41bda949ec8b46b01, type: 3}
+  image: {fileID: 21300000, guid: 1a16f6ed3d4ab304a8dafbe86b3598b4, type: 3}
