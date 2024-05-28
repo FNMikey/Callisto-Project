@@ -150,14 +150,14 @@ public class InventoryManager : MonoBehaviour
     // Check the chest if it's open and get items
     if (chest.Openchest())
     {
-        List<InventoryItem> itemsFromChest = chest.GetItemsFromChest();
+       /* List<InventoryItem> itemsFromChest = chest.GetItemsFromChest();
         foreach (InventoryItem item in itemsFromChest)
         {
             if (item != null && item.item != null && inventoryCounts.ContainsKey(item.item.itemName))
             {
                 inventoryCounts[item.item.itemName] += item.count;
             }
-        }
+        }*/
     }
 
     // Summary of required items from the recipe
