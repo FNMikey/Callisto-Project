@@ -126,4 +126,4 @@ MonoBehaviour:
   kamienChance: 60
   srebroChance: 25
   zlotoChance: 15
-  miningRange: 7
+  miningRange: 5
