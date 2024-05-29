@@ -123,7 +123,8 @@ MonoBehaviour:
   srebroPrefab: {fileID: 0}
   zlotoPrefab: {fileID: 0}
   health: 10
-  kamienChance: 60
-  srebroChance: 25
-  zlotoChance: 15
+  kamienChance: 5
+  srebroChance: 1
+  zlotoChance: 5
   miningRange: 5
+  miningParticlesPrefab: {fileID: 7128514328519337183, guid: 2a1586c1b88511340aa9380a56720c55, type: 3}

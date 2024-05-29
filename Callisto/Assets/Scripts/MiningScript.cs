@@ -8,9 +8,9 @@ public class MiningScript : MonoBehaviour
     public GameObject zlotoPrefab;
     public int health = 10;
 
-    [Range(0, 100)] public int kamienChance = 60;
-    [Range(0, 100)] public int srebroChance = 25;
-    [Range(0, 100)] public int zlotoChance = 15;
+    [Range(0, 100)] private int kamienChance = 50;
+    [Range(0, 100)] private int srebroChance = 10;
+    [Range(0, 100)] private int zlotoChance = 5;
 
     public float miningRange = 7.0f;
     private float spawnRadius;
@@ -22,7 +22,6 @@ public class MiningScript : MonoBehaviour
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
-
         Collider collider = GetComponent<Collider>();
         spawnRadius = collider.bounds.extents.magnitude;
 
@@ -91,8 +90,11 @@ public class MiningScript : MonoBehaviour
     {
         if (miningParticlesPrefab != null)
         {
+            Vector3 direction = (transform.position - player.transform.position).normalized;
+            Vector3 spawnPosition = player.transform.position + direction * 1f;
+            Quaternion rotation = Quaternion.LookRotation(direction);
 
-            GameObject particles = Instantiate(miningParticlesPrefab, player.transform.position, Quaternion.identity);
+            GameObject particles = Instantiate(miningParticlesPrefab, spawnPosition, rotation);
             ParticleSystem particleSystem = particles.GetComponent<ParticleSystem>();
             if (particleSystem != null)
             {
@@ -106,7 +108,7 @@ public class MiningScript : MonoBehaviour
                     ps.Play();
                 }
             }
-            // Opcjonalnie zniszcz particle system po zakoñczeniu dzia³ania
+
             Destroy(particles, particleSystem.main.duration + particleSystem.main.startLifetime.constantMax);
         }
         else

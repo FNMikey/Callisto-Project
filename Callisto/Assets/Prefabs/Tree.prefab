@@ -105,6 +105,7 @@ MonoBehaviour:
   srebroChance: 25
   zlotoChance: 15
   miningRange: 3
+  miningParticlesPrefab: {fileID: 7128514328519337183, guid: 1319d2a0978583d49a5ce48871404c81, type: 3}
 --- !u!64 &8003099910274736584
 MeshCollider:
   m_ObjectHideFlags: 0
