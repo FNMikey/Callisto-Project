@@ -106,7 +106,7 @@ public class InventoryManager : MonoBehaviour
 public bool CheckRecipeIngredients(Recipe recipe, out string inventoryContents, out Dictionary<string, int>? remainingChestItems, out Dictionary<string, int>? usedChestItems)
 {
     Dictionary<string, int> chestCounts = new Dictionary<string, int>();
-    if (chest.Openchest()) // Assuming you have a method to check if the chest is open
+    if (chest.Openchest()) 
     {
         chestCounts = chest.GetItemsFromChestWithCounts();
     }
@@ -118,23 +118,22 @@ public bool CheckRecipeIngredients(Recipe recipe, out string inventoryContents, 
     inventoryContents = "";
     bool canCraft = true;
 
-    // Display chest contents
     if (chestCounts.Count > 0)
     {
         inventoryContents += "Chest contents:\n";
         foreach (var item in chestCounts)
         {
             inventoryContents += $"{item.Key}: {item.Value}\n";
-            Debug.Log($"{item.Key}: {item.Value}"); // Display in console
+            Debug.Log($"{item.Key}: {item.Value}"); 
         }
     }
     else
     {
         inventoryContents += "The chest is empty.\n";
-        Debug.Log("The chest is empty."); // Display in console
+        Debug.Log("The chest is empty.");
     }
 
-    // Initialize counter for each recipe ingredient
+
     foreach (Ingredient ingredient in recipe.ingredients)
     {
         if (!inventoryCounts.ContainsKey(ingredient.name))
@@ -143,7 +142,6 @@ public bool CheckRecipeIngredients(Recipe recipe, out string inventoryContents, 
         }
     }
 
-    // Count items in inventory
     for (int i = 0; i < inventorySlots.Length; i++)
     {
         InventorySlot slot = inventorySlots[i];
@@ -173,7 +171,6 @@ public bool CheckRecipeIngredients(Recipe recipe, out string inventoryContents, 
 
     List<string> missingItems = new List<string>();
 
-    // Check availability of ingredients
     foreach (Ingredient ingredient in recipe.ingredients)
     {
         int countNeeded = ingredient.quantity;
@@ -190,7 +187,6 @@ public bool CheckRecipeIngredients(Recipe recipe, out string inventoryContents, 
         }
     }
 
-    // Only deduct items if all ingredients are available in sufficient quantities
     if (canCraft)
     {
         foreach (Ingredient ingredient in recipe.ingredients)
@@ -199,7 +195,6 @@ public bool CheckRecipeIngredients(Recipe recipe, out string inventoryContents, 
             int countAvailableFromInventory = inventoryCounts.ContainsKey(ingredient.name) ? inventoryCounts[ingredient.name] : 0;
             int countAvailableFromChest = chestCounts.ContainsKey(ingredient.name) ? chestCounts[ingredient.name] : 0;
 
-            // First deduct from inventory
             if (countAvailableFromInventory >= countNeeded)
             {
                 inventoryCounts[ingredient.name] -= countNeeded;
@@ -207,9 +202,8 @@ public bool CheckRecipeIngredients(Recipe recipe, out string inventoryContents, 
             }
             else if (countAvailableFromChest >= countNeeded)
             {
-                // Then deduct from chest
                 chestCounts[ingredient.name] -= countNeeded;
-                remainingChestItems[ingredient.name] = chestCounts[ingredient.name]; // Update remaining chest items
+                remainingChestItems[ingredient.name] = chestCounts[ingredient.name]; 
 
                 if (usedChestItems.ContainsKey(ingredient.name))
                 {
@@ -225,7 +219,7 @@ public bool CheckRecipeIngredients(Recipe recipe, out string inventoryContents, 
             }
             else if (countAvailableFromInventory + countAvailableFromChest >= countNeeded)
             {
-                // If needed quantity is not fully available from inventory or chest individually, but combined they are enough
+              
                 int remainingNeed = countNeeded - countAvailableFromInventory;
 
                 if (countAvailableFromInventory > 0)
@@ -235,7 +229,7 @@ public bool CheckRecipeIngredients(Recipe recipe, out string inventoryContents, 
                 }
 
                 chestCounts[ingredient.name] -= remainingNeed;
-                remainingChestItems[ingredient.name] = chestCounts[ingredient.name]; // Update remaining chest items
+                remainingChestItems[ingredient.name] = chestCounts[ingredient.name]; 
 
                 if (usedChestItems.ContainsKey(ingredient.name))
                 {
@@ -256,15 +250,13 @@ public bool CheckRecipeIngredients(Recipe recipe, out string inventoryContents, 
             }
         }
     }
-
-    // Display missing items in console
     if (missingItems.Count > 0)
     {
         inventoryContents += "\nMissing items:\n";
         foreach (string missingItem in missingItems)
         {
             inventoryContents += missingItem + "\n";
-            Debug.Log(missingItem); // Display in console
+            Debug.Log(missingItem); 
         }
     }
 
