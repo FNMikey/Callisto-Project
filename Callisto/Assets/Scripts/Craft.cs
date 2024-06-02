@@ -5,6 +5,8 @@ public class Crafting : MonoBehaviour
 {
     public InventoryManager inventoryManager;
     public Item item;
+
+    public Chest chest;
     private Recipe pickaxeRockRecipe = new Recipe();
     private Recipe pickaxeIronRecipe = new Recipe();
     private Recipe axeRockRecipe = new Recipe();
@@ -18,10 +20,14 @@ public class Crafting : MonoBehaviour
             new Ingredient { name = "Iron", quantity = 8 }
         };
         bool success = inventoryManager.TryCraftItem(furnaceRecipe);
-        if (success)
-        {
-            Debug.Log("Piec zostal stworzony");
-            inventoryManager.AddItem(item);
+        if (success){
+             if (inventoryManager.IsInventoryFull() && chest.Openchest()) {
+                    chest.AddItemToChest(item);
+                                Debug.Log("Piec zostal stworzony w skrzynce");
+            }else{
+                    inventoryManager.AddItem(item);
+                                Debug.Log("Piec zostal stworzony");
+            }    
         }
         else
         {
@@ -36,10 +42,14 @@ public class Crafting : MonoBehaviour
             new Ingredient { name = "Iron", quantity = 6 }
         };
         bool success = inventoryManager.TryCraftItem(swordIronRecipe);
-        if (success)
-        {
-            Debug.Log("Miecz zostal stworzony");
-            inventoryManager.AddItem(item);
+        if (success){
+             if (inventoryManager.IsInventoryFull() && chest.Openchest()) {
+                    chest.AddItemToChest(item);
+                        Debug.Log("Piec zostal miecz w skrzynce");
+            }else{
+                    inventoryManager.AddItem(item);
+                        Debug.Log("Miecz zostal stworzony");
+            }
         }
         else
         {
@@ -56,8 +66,13 @@ public class Crafting : MonoBehaviour
         bool success = inventoryManager.TryCraftItem(axeRockRecipe);
         if (success)
         {
-            Debug.Log("Siekiera zostal stworzony");
-            inventoryManager.AddItem(item);
+                if (inventoryManager.IsInventoryFull() && chest.Openchest()) {
+                    chest.AddItemToChest(item);
+                                Debug.Log("Piec zostal Topor w skrzynce");
+            }else{
+                    inventoryManager.AddItem(item);
+                                Debug.Log("Piec zostal topor");
+            }
         }
         else
         {
@@ -74,8 +89,13 @@ public class Crafting : MonoBehaviour
         bool success = inventoryManager.TryCraftItem(axeIronRecipe);
         if (success)
         {
-            Debug.Log("Siekiera zostal stworzony");
-            inventoryManager.AddItem(item);
+                 if (inventoryManager.IsInventoryFull() && chest.Openchest()) {
+                    chest.AddItemToChest(item);
+                                Debug.Log("topor zostal stworzony w skrzynce");
+            }else{
+                    inventoryManager.AddItem(item);
+                                Debug.Log("topor zostal stworzony");
+            }
         }
         else
         {
@@ -92,8 +112,13 @@ public class Crafting : MonoBehaviour
         bool success = inventoryManager.TryCraftItem(pickaxeIronRecipe);
         if (success)
         {
-            Debug.Log("Kilof zostal stworzony");
-            inventoryManager.AddItem(item);
+                 if (inventoryManager.IsInventoryFull() && chest.Openchest()) {
+                    chest.AddItemToChest(item);
+                                Debug.Log("Kilof zostal stworzony w skrzynce");
+            }else{
+                    inventoryManager.AddItem(item);
+                                Debug.Log("K<ilof zostal stworzony");
+            }
         }
         else
         {
@@ -111,8 +136,13 @@ public class Crafting : MonoBehaviour
         bool success = inventoryManager.TryCraftItem(pickaxeRockRecipe);
         if (success)
         {
-            Debug.Log("Kilof zostal stworzony");
-            inventoryManager.AddItem(item);
+              if (inventoryManager.IsInventoryFull() && chest.Openchest()) {
+                    chest.AddItemToChest(item);
+                                Debug.Log("Kilof zostal stworzony w skrzynce");
+            }else{
+                    inventoryManager.AddItem(item);
+                                Debug.Log("K<ilof zostal stworzony");
+            }
         }
         else
         {

@@ -63,11 +63,11 @@ InventoryItem
         {
             if (item.stackable && item.itemID == droppedItem.item.itemID)
             {
-                if (count < 5)
+                if (count > 4)
                 {
                     count += droppedItem.count; 
                     RefreshCount();
-                    count = Mathf.Min(count, 5);
+                    count = Mathf.Min(count, 4);
                     Destroy(droppedItem.gameObject);
                 }
             }

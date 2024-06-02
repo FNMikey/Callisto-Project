@@ -13,8 +13,10 @@ public class DemoScript : MonoBehaviour
     private bool TryCraftingRecipe(Recipe recipe)
     {
         string details;
+        Dictionary<string, int> usedChestItems;
+        Dictionary<string, int>? remainingChestItems;
         bool craft =
-            inventoryManager.CheckRecipeIngredients(recipe, out details);
+            inventoryManager.CheckRecipeIngredients(recipe, out details, out remainingChestItems, out usedChestItems);
         if (craft)
         {
             Debug.Log("Mozna stworzyc kilofa");
@@ -38,7 +40,6 @@ public class DemoScript : MonoBehaviour
         return;
     }
     if (inventoryManager.IsInventoryFull()) {
-        Debug.Log("Inventory is full");
     } else {
         if (inventoryManager.AddItem(item)) {
             Debug.Log($"{item.itemName} has been added");
