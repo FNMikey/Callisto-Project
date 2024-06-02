@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 public class Chest : MonoBehaviour
 {
-    public Transform player;  
+    [SerializeField] public Transform player;  
     public InventoryManager inventoryMenager;
     public GameObject chestUI; 
     public float interactionDistance = 3f;  
