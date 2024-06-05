@@ -8,10 +8,33 @@ public class InventoryManager : MonoBehaviour
     public int maxStackedItems = 4;
 
     public InventorySlot[] inventorySlots;
-
+    int selectedSlot =-1;
+    public Open open;
     public Chest chest;
     public GameObject inventoryItemPrefab;
 
+    private void Start(){
+        ChangeSelectedSlot(0);
+    }
+
+    private void Update(){
+        if(Input.GetKeyDown(KeyCode.Alpha1)){
+              ChangeSelectedSlot(0);
+        }else if(Input.GetKeyDown(KeyCode.Alpha2)){
+            ChangeSelectedSlot(1);
+        }else if(Input.GetKeyDown(KeyCode.Alpha3)){
+            ChangeSelectedSlot(2);
+        }else if(Input.GetKeyDown(KeyCode.Alpha4)){
+            ChangeSelectedSlot(3);
+        }
+    }
+    void ChangeSelectedSlot(int newValue){
+        if (selectedSlot >=0){
+            inventorySlots[selectedSlot].Deselect();
+        }
+        inventorySlots[newValue].Select();
+        selectedSlot = newValue;
+    }
     public bool RemoveItem(string itemName, int quantity)
     {
         int remainingQuantity = quantity;
@@ -106,7 +129,7 @@ public class InventoryManager : MonoBehaviour
 public bool CheckRecipeIngredients(Recipe recipe, out string inventoryContents, out Dictionary<string, int>? remainingChestItems, out Dictionary<string, int>? usedChestItems)
 {
     Dictionary<string, int> chestCounts = new Dictionary<string, int>();
-    if (chest.Openchest()) 
+    if (open.Openchest()) 
     {
         chestCounts = chest.GetItemsFromChestWithCounts();
     }

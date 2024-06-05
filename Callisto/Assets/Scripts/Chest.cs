@@ -6,82 +6,8 @@ public class Chest : MonoBehaviour
 
     public Transform player;  
         public InventoryManager inventoryMenager;
-    public GameObject chestUI;  
-    public float interactionDistance = 3f;  
-    private bool isOpen = false; 
-
     public InventorySlot[] chestSlots; 
     private List<InventoryItem> chestItems = new List<InventoryItem>();
-
-    void Start()
-    {
-        if (chestUI != null)
-        {
-
-            chestUI.SetActive(false); 
-        }
-    }
-
-    void Update()
-    {
-        bool open = Openchest();
-        if (IsPlayerNearby())
-        {
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                ToggleChest();
-                
-            }
-        }
-        else if (open)
-        {
-            CloseChest();            
-        }
-    }
-
-    public bool IsPlayerNearby()
-    {
-        return Vector3.Distance(player.position, transform.position) <= interactionDistance;
-    }
-
-    private void ToggleChest()
-    {
-        isOpen = !isOpen; 
-        if (isOpen)
-        {
-            Debug.Log("Chest opened!");
-        }
-        else
-        {
-            Debug.Log("Chest closed!");
-        }
-        UpdateChestUI();
-    }
-
-    private void CloseChest()
-    {
-        isOpen = false;
-        UpdateChestUI();
-        Debug.Log("Chest closed due to distance!");
-    }
-
-    private void UpdateChestUI()
-    {
-        if (isOpen)
-        {
-            if (chestUI != null)
-            {
-                chestUI.SetActive(true); 
-            }
-        }
-        else
-        {
-            if (chestUI != null)
-            {
-                chestUI.SetActive(false); 
-            }
-        }
-    }
 
 public Dictionary<string, int> GetItemsFromChestWithCounts()
 {
@@ -123,18 +49,7 @@ public Dictionary<string, int> GetItemsFromChestWithCounts()
     }
 
     return itemCounts;  
-}
-
-    public bool Openchest(){
-        if(chestUI.activeSelf){
-                        Debug.Log("Chest is opnen");
-                  return true;
-        }else{
-              Debug.Log("Chest is close");
-            return false;
-        }
-    }
-    
+}    
     public bool RemoveItemChest(string itemName, int quantity)
     {
         int remainingQuantity = quantity;

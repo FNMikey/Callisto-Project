@@ -4,25 +4,10 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class InventorySlot : MonoBehaviour, IDropHandler
+public class ChestSlot : MonoBehaviour, IDropHandler
 {
-    public Image image; // Przypisz komponent Image
+  
 
-    public Color selectedColor = Color.yellow;
-    public Color notSelectedColor = Color.white;
-
-    private void Awake()
-    {
-        Deselect();
-    }
-
-    public void Select(){
-        image.color = selectedColor;
-    }
-
-        public void Deselect(){
-        image.color = notSelectedColor;
-    }
 
     public void OnDrop(PointerEventData eventData)
     {
