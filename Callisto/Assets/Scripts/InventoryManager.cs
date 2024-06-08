@@ -78,7 +78,7 @@ public class InventoryManager : MonoBehaviour
             {
                 itemInSlot.count++;
                 itemInSlot.RefreshCount();
-                inventoryText.DisplayItemAddedMessage(item);
+                //inventoryText.DisplayItemAddedMessage(item);
                 return true;
             }
         }
@@ -89,7 +89,7 @@ public class InventoryManager : MonoBehaviour
             if (itemInSlot == null)
             {
                 SpawnNewItem(item, slot);
-                inventoryText.DisplayItemAddedMessage(item);
+                //inventoryText.DisplayItemAddedMessage(item);
                 return true;
             }
         }

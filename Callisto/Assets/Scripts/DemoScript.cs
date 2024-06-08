@@ -50,7 +50,7 @@ public class DemoScript : MonoBehaviour
         if (inventoryManager.AddItem(itemToPickup))
         {
             Debug.Log($"{itemToPickup.itemName} zostal dodany.");
-            gameObject.SetActive(false); 
+            gameObject.SetActive(false);
         }
         else
         {

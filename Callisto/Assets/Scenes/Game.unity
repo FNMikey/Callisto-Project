@@ -8414,6 +8414,7 @@ MonoBehaviour:
   - {fileID: 1607521337}
   - {fileID: 1516825079}
   - {fileID: 1018834450}
+  inventoryText: {fileID: 0}
   chest: {fileID: 936075336}
   inventoryItemPrefab: {fileID: 103895218355057088, guid: acbdd8acc757f81428fc3d83815dc316, type: 3}
 --- !u!4 &1578403149
