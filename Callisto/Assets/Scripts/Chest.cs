@@ -128,7 +128,7 @@ public Dictionary<string, int> GetItemsFromChestWithCounts()
                         Debug.Log("Chest is opnen");
                   return true;
         }else{
-              Debug.Log("Chest is close");
+              //Debug.Log("Chest is close");
             return false;
         }
     }

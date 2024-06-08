@@ -3,14 +3,14 @@ using UnityEngine;
 public class MiningScript : MonoBehaviour
 {
 
-    public GameObject kamienPrefab;
-    public GameObject srebroPrefab;
-    public GameObject zlotoPrefab;
+    public GameObject rockPrefab;
+    public GameObject silverPrefab;
+    public GameObject goldPrefab;
     public int health = 10;
 
-    [Range(0, 100)] private int kamienChance = 50;
-    [Range(0, 100)] private int srebroChance = 10;
-    [Range(0, 100)] private int zlotoChance = 5;
+    [Range(0, 100)] private int rockChance = 50;
+    [Range(0, 100)] private int silverChance = 10;
+    [Range(0, 100)] private int goldChance = 5;
 
     public float miningRange = 7.0f;
     private float spawnRadius;
@@ -43,17 +43,17 @@ public class MiningScript : MonoBehaviour
         {
             int randomValue = Random.Range(0, 100);
 
-            if (randomValue < kamienChance)
+            if (randomValue < rockChance)
             {
-                SpawnItem(kamienPrefab);
+                SpawnItem(rockPrefab);
             }
-            else if (randomValue < kamienChance + srebroChance)
+            else if (randomValue < rockChance + silverChance)
             {
-                SpawnItem(srebroPrefab);
+                SpawnItem(silverPrefab);
             }
-            else if (randomValue < kamienChance + srebroChance + zlotoChance)
+            else if (randomValue < rockChance + silverChance + goldChance)
             {
-                SpawnItem(zlotoPrefab);
+                SpawnItem(goldPrefab);
             }
 
             PlayMiningParticles();
@@ -110,10 +110,6 @@ public class MiningScript : MonoBehaviour
             }
 
             Destroy(particles, particleSystem.main.duration + particleSystem.main.startLifetime.constantMax);
-        }
-        else
-        {
-            Debug.LogWarning("Mining particles prefab is not assigned.");
         }
     }
 
