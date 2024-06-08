@@ -10,31 +10,14 @@ public class InventoryManager : MonoBehaviour
     public InventorySlot[] inventorySlots;
     int selectedSlot =-1;
 
+    public InventoryText inventoryText;
     public Chest chest;
     public GameObject inventoryItemPrefab;
 
     private void Start(){
-        ChangeSelectedSlot(0);
+
     }
 
-    private void Update(){
-        if(Input.GetKeyDown(KeyCode.Alpha1)){
-              ChangeSelectedSlot(0);
-        }else if(Input.GetKeyDown(KeyCode.Alpha2)){
-            ChangeSelectedSlot(1);
-        }else if(Input.GetKeyDown(KeyCode.Alpha3)){
-            ChangeSelectedSlot(2);
-        }else if(Input.GetKeyDown(KeyCode.Alpha4)){
-            ChangeSelectedSlot(3);
-        }
-    }
-    void ChangeSelectedSlot(int newValue){
-        if (selectedSlot >=0){
-            inventorySlots[selectedSlot].Deselect();
-        }
-        inventorySlots[newValue].Select();
-        selectedSlot = newValue;
-    }
     public bool RemoveItem(string itemName, int quantity)
     {
         int remainingQuantity = quantity;
@@ -102,6 +85,7 @@ public class InventoryManager : MonoBehaviour
             {
                 itemInSlot.count++;
                 itemInSlot.RefreshCount();
+                      inventoryText.DisplayItemAddedMessage(item);
                 return true;
             }
         }
@@ -113,6 +97,7 @@ public class InventoryManager : MonoBehaviour
             if (itemInSlot == null)
             {
                 SpawnNewItem (item, slot);
+                      inventoryText.DisplayItemAddedMessage(item);
                 return true;
             }
         }
