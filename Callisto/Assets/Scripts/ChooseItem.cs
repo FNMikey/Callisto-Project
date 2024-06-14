@@ -13,6 +13,8 @@ public class ChooseItem : MonoBehaviour
 
     public InventorySlot[] inventorySlots;
 
+    private string selectedItemName = "";
+
     private void Start()
     {
         if (inventorySlots.Length > 0)
@@ -44,6 +46,15 @@ public class ChooseItem : MonoBehaviour
         {
             inventorySlots[newValue].Select();
             selectedSlot = newValue;
+
+            // Pobierz nazwę wybranego przedmiotu
+            selectedItemName = inventorySlots[newValue].GetComponentInChildren<InventoryItem>().name;
+            Debug.Log(selectedItemName);
         }
+    }
+
+    public string GetSelectedItemName()
+    {
+        return selectedItemName;
     }
 }

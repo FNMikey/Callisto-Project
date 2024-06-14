@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 1681512679512164809}
   - component: {fileID: 432477144228934780}
   m_Layer: 0
-  m_Name: Silver
+  m_Name: Gold
   m_TagString: Rock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -65,7 +65,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 7490952440742008943, guid: be75fe2b6af43444cac3abdcffc7a41e, type: 3}
+  - {fileID: -905690159841262435, guid: 78a7cd0a5f489ec4d845a76e1d5f9971, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -124,8 +124,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inventoryManager: {fileID: 0}
   itemsToPickup:
-  - {fileID: 11400000, guid: 6141ef7aa71cd0341b9a7f6e09936662, type: 2}
-  item: {fileID: 11400000, guid: 6141ef7aa71cd0341b9a7f6e09936662, type: 2}
+  - {fileID: 11400000, guid: e33f014c6c5a62045b7c98c893375e6d, type: 2}
+  item: {fileID: 11400000, guid: e33f014c6c5a62045b7c98c893375e6d, type: 2}
 --- !u!54 &1681512679512164809
 Rigidbody:
   m_ObjectHideFlags: 0

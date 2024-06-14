@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3c2a9e5ba0f47fe4c9781e4e61424026, type: 3}
-  m_Name: IronOre
+  m_Name: SilverOre
   m_EditorClassIdentifier: 
   itemName: IronOre
   itemID: 2
@@ -18,4 +18,4 @@ MonoBehaviour:
   actionType: 1
   range: {x: 5, y: 4}
   stackable: 1
-  image: {fileID: 21300000, guid: 3cfe8bf346bcde242acfc1dade533aeb, type: 3}
+  image: {fileID: 21300000, guid: c29a257660f52cb4a95a987be29082a9, type: 3}

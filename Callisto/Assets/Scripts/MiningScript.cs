@@ -16,8 +16,9 @@ public class MiningScript : MonoBehaviour
     private float spawnRadius;
 
     public GameObject miningParticlesPrefab;
-
     private GameObject player;
+
+    public InventoryManager inventoryManager;
 
     void Start()
     {
@@ -41,6 +42,32 @@ public class MiningScript : MonoBehaviour
 
         if (distance <= miningRange)
         {
+            //string selectedItem = selectedInventorySlot.GetSelectedItemName();
+
+            string selectedItem = inventoryManager.inventorySlots[inventoryManager.selectedSlot].GetSelectedItemName();
+
+            Debug.Log(selectedItem);
+
+            // Zaktualizuj szansê na wyrzucenie z³ota w zale¿noœci od wybranego przedmiotu
+            int modifiedGoldChance = goldChance;
+
+            if (selectedItem == "PickaxeGold")
+            {
+                modifiedGoldChance = 100;
+            }
+            else if (selectedItem == "PickaxeSilver")
+            {
+                modifiedGoldChance = 50;
+            }
+            else if (selectedItem == "PickaxeRock")
+            {
+                modifiedGoldChance = 5;
+            }
+            else 
+            {
+                modifiedGoldChance = 0;
+            }
+
             int randomValue = Random.Range(0, 100);
 
             if (randomValue < rockChance)
@@ -51,7 +78,7 @@ public class MiningScript : MonoBehaviour
             {
                 SpawnItem(silverPrefab);
             }
-            else if (randomValue < rockChance + silverChance + goldChance)
+            else if (randomValue < rockChance + silverChance + modifiedGoldChance)
             {
                 SpawnItem(goldPrefab);
             }
@@ -81,8 +108,6 @@ public class MiningScript : MonoBehaviour
             Destroy(gameObject);
 
         }
-
-        Debug.Log(health.ToString());
 
     }
 
