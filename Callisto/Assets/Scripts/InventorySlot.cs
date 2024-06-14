@@ -11,6 +11,8 @@ public class InventorySlot : MonoBehaviour, IDropHandler
     public Color selectedColor = Color.yellow;
     public Color notSelectedColor = Color.white;
 
+    public string selectedItemName = "";
+
     private void Awake()
     {
         Deselect();
@@ -18,10 +20,17 @@ public class InventorySlot : MonoBehaviour, IDropHandler
 
     public void Select(){
         image.color = selectedColor;
+        InventoryItem inventoryItem = GetComponentInChildren<InventoryItem>();
+        if (inventoryItem != null)
+        {
+            selectedItemName = inventoryItem.item.name;
+            Debug.Log(selectedItemName);
+        }
     }
 
         public void Deselect(){
         image.color = notSelectedColor;
+        selectedItemName = "";
     }
 
     public void OnDrop(PointerEventData eventData)
@@ -31,5 +40,10 @@ public class InventorySlot : MonoBehaviour, IDropHandler
             InventoryItem inventoryItem = eventData.pointerDrag.GetComponent<InventoryItem>();
             inventoryItem.parentAfterDrag = transform;
         }
+    }
+
+    public string GetSelectedItemName()
+    {
+        return selectedItemName;
     }
 }

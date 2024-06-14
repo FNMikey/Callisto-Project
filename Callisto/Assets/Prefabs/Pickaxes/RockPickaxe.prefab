@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 403599104187851561}
   - component: {fileID: -9212381407285841295}
   m_Layer: 0
-  m_Name: Pickaxe
+  m_Name: RockPickaxe
   m_TagString: Pick
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30,13 +30,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6343643657033818722}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.3099997, y: 0.5, z: 6.39}
-  m_LocalScale: {x: 14.192392, y: 14.192392, z: 14.192392}
+  m_LocalRotation: {x: -0.5210472, y: -0.043848876, z: 0.05705096, w: 0.8504895}
+  m_LocalPosition: {x: -2.863, y: 2.41, z: 0.646}
+  m_LocalScale: {x: 3.327442, y: 3.327442, z: 3.327442}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -61.798, y: -16.477, z: 17.58}
 --- !u!33 &2951596812450013415
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -65,7 +65,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 5988347114677481029, guid: e3fd1ba6ab2dd3046a357d23c49934d9, type: 3}
+  - {fileID: 5988347114677481029, guid: e8a93a15a464b5a4284a47f0edab55f7, type: 3}
   - {fileID: -7098565394360792512, guid: e3fd1ba6ab2dd3046a357d23c49934d9, type: 3}
   - {fileID: 170264240884468712, guid: e3fd1ba6ab2dd3046a357d23c49934d9, type: 3}
   - {fileID: 3254086250651452113, guid: e3fd1ba6ab2dd3046a357d23c49934d9, type: 3}
