@@ -11,6 +11,7 @@ public class PlayerBHV : MonoBehaviour
     Rigidbody rigidBody;
     Vector3 movement;
     Vector3 mousePos;
+    private Animator animator;
 
     public GameObject heldItem;
 
@@ -34,6 +35,9 @@ public class PlayerBHV : MonoBehaviour
         {
             camTransform = cam.transform;
         }
+
+        animator = GetComponent<Animator>();
+
     }
 
     void Update()
@@ -72,6 +76,7 @@ public class PlayerBHV : MonoBehaviour
         {
             movement *= sprintMultiplier;
         }
+
     }
 
     void FixedUpdate()
@@ -84,6 +89,9 @@ public class PlayerBHV : MonoBehaviour
         rigidBody
             .MovePosition(rigidBody.position +
             movement * moveSpeed * Time.fixedDeltaTime);
+
+        animator.SetFloat("Speed", rigidBody.velocity.magnitude);
+
     }
 
     private void OnDrawGizmos()
