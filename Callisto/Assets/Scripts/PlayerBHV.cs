@@ -11,7 +11,6 @@ public class PlayerBHV : MonoBehaviour
     Rigidbody rigidBody;
     Vector3 movement;
     Vector3 mousePos;
-    private Animator animator;
 
     public GameObject heldItem;
 
@@ -36,7 +35,6 @@ public class PlayerBHV : MonoBehaviour
             camTransform = cam.transform;
         }
 
-        animator = GetComponent<Animator>();
 
     }
 
@@ -45,12 +43,13 @@ public class PlayerBHV : MonoBehaviour
         // Input
         float moveX = Input.GetAxisRaw("Horizontal");
 
-        //float moveZ = Input.GetAxisRaw("Vertical");
         float moveZ = Input.GetAxisRaw("Vertical");
 
         // Calculate movement vector
         Vector3 moveDirection =
             Quaternion.Euler(0, 45, 0) * new Vector3(moveX, 0f, moveZ);
+
+
 
         // Mouse position
         Ray cameraRay = cam.ScreenPointToRay(Input.mousePosition);
@@ -90,7 +89,6 @@ public class PlayerBHV : MonoBehaviour
             .MovePosition(rigidBody.position +
             movement * moveSpeed * Time.fixedDeltaTime);
 
-        animator.SetFloat("Speed", rigidBody.velocity.magnitude);
 
     }
 
