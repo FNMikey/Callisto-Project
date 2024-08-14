@@ -33,7 +33,7 @@ public class Crafting : MonoBehaviour
         pickaxeIronRecipe.ingredients = new List<Ingredient>
         {
             new Ingredient { name = "Stick", quantity = 2 },
-            new Ingredient { name = "Iron", quantity = 3 }
+            new Ingredient { name = "IronBar", quantity = 3 }
         };
 
         axeRockRecipe.ingredients = new List<Ingredient>
@@ -45,7 +45,7 @@ public class Crafting : MonoBehaviour
         axeIronRecipe.ingredients = new List<Ingredient>
         {
             new Ingredient { name = "Stick", quantity = 2 },
-            new Ingredient { name = "Iron", quantity = 3 }
+            new Ingredient { name = "IronBar", quantity = 3 }
         };
 
         goldFigureRecipe.ingredients = new List<Ingredient>
