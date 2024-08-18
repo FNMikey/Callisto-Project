@@ -28,6 +28,7 @@ public class InventorySlot : MonoBehaviour, IDropHandler
         }
     }
 
+
         public void Deselect(){
         image.color = notSelectedColor;
         selectedItemName = "";
@@ -41,7 +42,7 @@ public class InventorySlot : MonoBehaviour, IDropHandler
             inventoryItem.parentAfterDrag = transform;
         }
     }
-
+  
     public string GetSelectedItemName()
     {
         return selectedItemName;

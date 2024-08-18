@@ -5,6 +5,7 @@ using UnityEngine;
 public class InventoryManager : MonoBehaviour
 {
     public int maxStackedItems = 4;
+    public Item item;
     public InventorySlot[] inventorySlots;
     public InventoryText inventoryText;
     public Chest chest;
@@ -23,6 +24,11 @@ public class InventoryManager : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.Alpha2)) ChangeSelectedSlot(1);
         else if (Input.GetKeyDown(KeyCode.Alpha3)) ChangeSelectedSlot(2);
         else if (Input.GetKeyDown(KeyCode.Alpha4)) ChangeSelectedSlot(3);
+
+        if (Input.GetKeyDown(KeyCode.R))
+    {
+        DropSelectedItem();
+    }
     }
 
     void ChangeSelectedSlot(int newValue)
@@ -58,6 +64,36 @@ public class InventoryManager : MonoBehaviour
 
         return false;
     }
+public void DropSelectedItem()
+{
+    InventorySlot selectedInventorySlot = inventorySlots[selectedSlot];
+    InventoryItem itemInSlot = selectedInventorySlot.GetComponentInChildren<InventoryItem>();
+
+    if (itemInSlot != null)
+    {
+        if (itemInSlot.item != null)
+        {
+            Vector3 dropPosition = transform.position + transform.forward;
+            if("Sword"== item.itemName)
+            {
+                Instantiate(item.prefab, dropPosition, Quaternion.identity);
+                RemoveItem(itemInSlot.item.name, 1);
+            }
+            else
+            {
+                Debug.LogError("Prefab for item '" + itemInSlot.item.name + "' not found.");
+            }
+        }
+        else
+        {
+            Debug.LogError("Item in the slot is null.");
+        }
+    }
+    else
+    {
+        Debug.LogError("No item found in the selected inventory slot.");
+    }
+}
 
     public bool IsInventoryFull()
     {
