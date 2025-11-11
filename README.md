@@ -14,7 +14,7 @@ Its main goal was to explore and demonstrate practical aspects of **game develop
 - User interface design,
 - 3D modelling
 
-> The game is a [3D exploration game].
+> The genre is a 3D exploration/ survival.
 
 ## 🧠 Technologies Used
 
