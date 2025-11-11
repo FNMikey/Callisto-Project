@@ -1,4 +1,4 @@
-# 🎓 Engineering Thesis Project — Unity Game
+# 🎓 Engineering Thesis Project - Unity Game
 
 Hi!  
 
@@ -28,4 +28,3 @@ Its main goal was to explore and demonstrate practical aspects of **game develop
 - Custom mechanics and scripts written in C#
 - UI system and player interaction elements
 - Modular project structure following design patterns learned from: [LINK](https://refactoring.guru/design-patterns)
-
